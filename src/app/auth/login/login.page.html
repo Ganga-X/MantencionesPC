@@ -1,0 +1,18 @@
+<ion-content class="auth-content">
+  <main class="auth-shell">
+    <div class="brand-mark">MPC</div>
+    <p class="eyebrow">MantencionesPC</p>
+    <h1>Tu equipo, en buenas manos.</h1>
+    <p class="intro">Ingresa para gestionar tus mantenciones y solicitudes.</p>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <ion-item><ion-input label="Correo electrónico" labelPlacement="stacked" type="email" formControlName="email"></ion-input></ion-item>
+      @if (form.controls.email.touched && form.controls.email.invalid) { <ion-note color="danger">Ingresa un correo válido.</ion-note> }
+      <ion-item><ion-input label="Contraseña" labelPlacement="stacked" type="password" formControlName="password"></ion-input></ion-item>
+      @if (form.controls.password.touched && form.controls.password.invalid) { <ion-note color="danger">Usa al menos 6 caracteres.</ion-note> }
+      @if (error) { <ion-text color="danger"><p>{{ error }}</p></ion-text> }
+      <ion-button expand="block" type="submit" [disabled]="loading">{{ loading ? 'Ingresando...' : 'Iniciar sesión' }}</ion-button>
+    </form>
+    <ion-button expand="block" fill="outline" (click)="googleLogin()" [disabled]="loading">Continuar con Google</ion-button>
+    <div class="auth-links"><a routerLink="/forgot-password">¿Olvidaste tu contraseña?</a><a routerLink="/register">Crear una cuenta</a></div>
+  </main>
+</ion-content>

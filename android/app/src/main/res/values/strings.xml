@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MantencionesPC</string>
+    <string name="title_activity_main">MantencionesPC</string>
+    <string name="package_name">cl.mantencionespc.app</string>
+    <string name="custom_url_scheme">cl.mantencionespc.app</string>
+</resources>

@@ -1,0 +1,10 @@
+.auth-content { --background: #f4f1eb; }
+.auth-shell { max-width: 460px; margin: 0 auto; padding: 12vh 24px 40px; }
+.brand-mark { display: grid; place-items: center; width: 58px; height: 58px; background: #173f4f; color: #f6c85f; font-weight: 800; letter-spacing: 0; }
+h1 { color: #173f4f; font-size: clamp(2rem, 8vw, 3.4rem); line-height: 1; margin: 8px 0 14px; }
+.intro { color: #52636a; margin-bottom: 28px; }
+form { display: grid; gap: 10px; margin-bottom: 14px; }
+ion-item { --background: #fff; --border-color: #d9d5cc; }
+ion-button { margin-top: 10px; min-height: 48px; }
+.auth-links { display: flex; justify-content: space-between; gap: 16px; margin-top: 24px; font-size: .9rem; }
+a { color: #176b73; }

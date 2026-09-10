@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>MantencionesPC</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="logout()">Salir</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <main class="dashboard-shell">
+    <section class="welcome">
+      <p class="eyebrow">Centro de mantenciones</p>
+      <h1>Hola, {{ displayName }}</h1>
+      <p>Gestiona tus equipos, solicitudes y próximas mantenciones desde un solo lugar.</p>
+    </section>
+    <section class="quick-actions">
+      <ion-card button (click)="requestService()">
+        <ion-card-header><ion-card-title>Solicitar servicio</ion-card-title></ion-card-header>
+        <ion-card-content>Cuéntanos qué necesita tu equipo.</ion-card-content>
+      </ion-card>
+      <ion-card button (click)="contactWhatsapp()">
+        <ion-card-header><ion-card-title>Hablar por WhatsApp</ion-card-title></ion-card-header>
+        <ion-card-content>Contacta directamente al administrador.</ion-card-content>
+      </ion-card>
+    </section>
+    <section class="status-panel">
+      <div>
+        <p class="eyebrow">Tus solicitudes</p>
+        <h2>Todo bajo control</h2>
+      </div>
+      <ion-button routerLink="/dashboard" fill="outline">Ver solicitudes</ion-button>
+    </section>
+  </main>
+</ion-content>

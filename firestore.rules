@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() { return signedIn() && request.auth.token.admin == true; }
+    match /users/{userId} {
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == userId);
+      allow create: if signedIn() && request.auth.uid == userId && request.resource.data.role == 'user';
+      allow update: if isAdmin() || (signedIn() && request.auth.uid == userId && request.resource.data.role == resource.data.role);
+    }
+    match /services/{serviceId} {
+      allow read: if isAdmin() || (signedIn() && resource.data.active == true);
+      allow write: if isAdmin();
+    }
+    match /serviceRequests/{requestId} {
+      allow create: if signedIn() && request.resource.data.userId == request.auth.uid;
+      allow read: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow update: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid && request.resource.data.userId == resource.data.userId);
+      allow delete: if isAdmin();
+    }
+    match /equipment/{equipmentId} {
+      allow read, write: if isAdmin() || (signedIn() && request.resource.data.userId == request.auth.uid);
+    }
+    match /payments/{paymentId} { allow read, write: if isAdmin(); }
+  }
+}
