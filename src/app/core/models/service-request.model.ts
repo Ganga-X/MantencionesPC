@@ -10,7 +10,6 @@ export interface ServiceRequest {
   brand: string;
   model: string;
   description: string;
-  images: string[];
   status: RequestStatus;
   createdAt: unknown;
   updatedAt: unknown;
