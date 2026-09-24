@@ -3,9 +3,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
-@Component({ selector: 'app-register', templateUrl: './register.page.html', styleUrls: ['../login/login.page.scss'], standalone: false })
+@Component({ selector: 'app-register', templateUrl: './register.page.html', styleUrls: ['../login/login.page.scss', './register.page.scss'], standalone: false })
 export class RegisterPage {
   loading = false; error = '';
+  readonly retroTheme = `retro-scene--${['blue', 'green', 'sunset'][Math.floor(Math.random() * 3)]}`;
   private readonly formBuilder = inject(FormBuilder);
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
