@@ -1,16 +1,17 @@
 .auth-content { --background: #101927; }
+.auth-content { --overflow: hidden; }
 .auth-content::part(background) { background: #101927; }
 .auth-shell { position: relative; z-index: 2; max-width: 460px; margin: 0 auto; padding: 8vh 24px 40px; }
 .retro-scene { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(180deg, #182b45 0%, #3e315e 52%, #121b2a 100%); }
 .retro-sun { position: absolute; top: 12%; left: 50%; width: min(58vw, 250px); aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: repeating-linear-gradient(to bottom, #f6c85f 0 10px, #e77b54 10px 15px); box-shadow: 0 0 48px rgba(246, 200, 95, .35); animation: retro-pulse 4s ease-in-out infinite; }
 .retro-grid { position: absolute; right: -20%; bottom: -18%; left: -20%; height: 52%; transform: perspective(180px) rotateX(58deg); background-image: linear-gradient(rgba(101, 215, 203, .35) 1px, transparent 1px), linear-gradient(90deg, rgba(101, 215, 203, .35) 1px, transparent 1px); background-size: 34px 26px; animation: retro-scroll 1.8s linear infinite; }
 .retro-pixels { position: absolute; inset: 0; opacity: .26; background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 23px 23px; animation: retro-flicker 3s steps(2, end) infinite; }
-.brand-mark { position: relative; display: grid; place-items: center; width: 70px; height: 70px; margin: 0 auto 12px; overflow: hidden; border: 3px solid #101927; background: #f6c85f; color: #101927; font-size: 1.45rem; font-weight: 900; letter-spacing: .08em; box-shadow: 6px 6px 0 #101927; }
+.brand-mark { position: relative; top: -18px; display: grid; place-items: center; width: 70px; height: 70px; margin: 0 auto 12px; overflow: hidden; border: 3px solid #101927; background: #f6c85f; color: #101927; font-size: 1.45rem; font-weight: 900; letter-spacing: .08em; box-shadow: 6px 6px 0 #101927; }
 .brand-mark::after { position: absolute; right: -7px; bottom: 8px; width: 30px; height: 6px; transform: rotate(-45deg); background: #e77b54; content: ''; }
 .brand-mark span { position: relative; z-index: 1; }
-.eyebrow { color: #000; font-size: clamp(2.25rem, 9vw, 3.8rem); font-weight: 900; letter-spacing: 0; line-height: 1; margin: 0 0 12px; text-align: center; text-shadow: 2px 2px 0 rgba(246, 200, 95, .7); }
+.eyebrow { position: relative; top: 40px; color: #000; font-size: clamp(2.5rem, 10vw, 4.2rem); font-weight: 900; letter-spacing: 0; line-height: 1; margin: 0 0 12px; text-align: center; text-shadow: 2px 2px 0 rgba(246, 200, 95, .7); }
 .eyebrow span { display: block; white-space: nowrap; }
-h1 { color: #000; font-size: clamp(1.45rem, 5vw, 2.25rem); line-height: 1.05; margin: 116px 0 10px; text-align: center; }
+h1 { color: #000; font-size: clamp(1.45rem, 5vw, 2.25rem); line-height: 1.05; margin: 148px 0 10px; text-align: center; }
 .intro { color: #18202c; margin-bottom: 24px; text-align: center; }
 form { display: grid; gap: 8px; margin-bottom: 14px; }
 form label { color: #fff; font-size: 1rem; font-weight: 700; margin-top: 5px; }
@@ -22,3 +23,14 @@ a { color: #fff; font-weight: 700; }
 @keyframes retro-scroll { from { background-position: 0 0, 0 0; } to { background-position: 0 26px, 34px 0; } }
 @keyframes retro-pulse { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.04); } }
 @keyframes retro-flicker { 0%, 100% { opacity: .2; } 50% { opacity: .34; } }
+
+@media (max-height: 760px) {
+	.auth-shell { padding-top: 2vh; padding-bottom: 12px; }
+	.brand-mark { top: -8px; transform: scale(.82); margin-bottom: 0; }
+	.eyebrow { top: 18px; font-size: clamp(2rem, 9vw, 3.4rem); margin-bottom: 0; }
+	h1 { margin-top: 82px; margin-bottom: 6px; font-size: clamp(1.3rem, 5vw, 2rem); }
+	form { gap: 4px; margin-bottom: 6px; }
+	form label { margin-top: 2px; }
+	ion-button { margin-top: 5px; min-height: 42px; }
+	.auth-links { margin-top: 10px; }
+}

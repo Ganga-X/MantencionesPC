@@ -29,8 +29,14 @@ export class AuthService {
   }
 
   async register(displayName: string, email: string, whatsapp: string, password: string): Promise<void> {
-    const credential = await createUserWithEmailAndPassword(firebaseAuth, email, password);
-    await updateProfile(credential.user, { displayName });
+    const credential = await this.withTimeout(
+      createUserWithEmailAndPassword(firebaseAuth, email, password),
+      'La creación de la cuenta tardó demasiado. Revisa tu conexión e inténtalo nuevamente.'
+    );
+    await this.withTimeout(
+      updateProfile(credential.user, { displayName }),
+      'La cuenta fue creada, pero no pudimos guardar tu nombre.'
+    );
     const profile: UserProfile = {
       uid: credential.user.uid,
       displayName,
@@ -42,7 +48,10 @@ export class AuthService {
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     };
-    await setDoc(doc(firestore, 'users', credential.user.uid), profile);
+    await this.withTimeout(
+      setDoc(doc(firestore, 'users', credential.user.uid), profile),
+      'La cuenta fue creada, pero no pudimos guardar tus datos en Firestore. Verifica que Firestore esté habilitado.'
+    );
   }
 
   async loginWithGoogle(): Promise<void> {
@@ -75,5 +84,17 @@ export class AuthService {
   async getProfile(uid: string): Promise<UserProfile | null> {
     const snapshot = await getDoc(doc(firestore, 'users', uid));
     return snapshot.exists() ? snapshot.data() as UserProfile : null;
+  }
+
+  private async withTimeout<T>(operation: Promise<T>, message: string): Promise<T> {
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    const timeout = new Promise<never>((_, reject) => {
+      timeoutId = setTimeout(() => reject(new Error(message)), 15000);
+    });
+    try {
+      return await Promise.race([operation, timeout]);
+    } finally {
+      if (timeoutId !== undefined) clearTimeout(timeoutId);
+    }
   }
 }
