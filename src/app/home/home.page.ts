@@ -2,6 +2,10 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { environment } from '../../environments/environment';
+import { addIcons } from 'ionicons';
+import { arrowForwardOutline, clipboardOutline, constructOutline, logOutOutline, logoWhatsapp, timeOutline } from 'ionicons/icons';
+
+addIcons({ arrowForwardOutline, clipboardOutline, constructOutline, logOutOutline, logoWhatsapp, timeOutline });
 
 @Component({
   selector: 'app-home',

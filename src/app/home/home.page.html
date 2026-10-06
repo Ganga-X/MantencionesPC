@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>MantencionesPC</ion-title>
+    <ion-title><span class="brand-name">GangaTech</span><span class="brand-context">Centro de servicio</span></ion-title>
     <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="logout()">Salir</ion-button>
+      <ion-button fill="clear" (click)="logout()"><ion-icon slot="start" name="log-out-outline"></ion-icon>Salir</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -10,26 +10,29 @@
 <ion-content>
   <main class="dashboard-shell">
     <section class="welcome">
+      <div class="welcome-icon"><ion-icon name="construct-outline"></ion-icon></div>
       <p class="eyebrow">Centro de mantenciones</p>
       <h1>Hola, {{ displayName }}</h1>
-      <p>Gestiona tus equipos, solicitudes y próximas mantenciones desde un solo lugar.</p>
+      <p class="welcome-copy">Gestiona tus equipos, solicitudes y próximas mantenciones desde un solo lugar.</p>
     </section>
     <section class="quick-actions">
-      <ion-card button (click)="requestService()">
-        <ion-card-header><ion-card-title>Solicitar servicio</ion-card-title></ion-card-header>
-        <ion-card-content>Cuéntanos qué necesita tu equipo.</ion-card-content>
+      <ion-card class="service-card" button (click)="requestService()">
+        <ion-card-header><div class="card-icon amber"><ion-icon name="clipboard-outline"></ion-icon></div><ion-card-title>Solicitar servicio</ion-card-title></ion-card-header>
+        <ion-card-content>Cuéntanos qué necesita tu equipo.<ion-icon name="arrow-forward-outline"></ion-icon></ion-card-content>
       </ion-card>
-      <ion-card button (click)="contactWhatsapp()">
-        <ion-card-header><ion-card-title>Hablar por WhatsApp</ion-card-title></ion-card-header>
-        <ion-card-content>Contacta directamente al administrador.</ion-card-content>
+      <ion-card class="whatsapp-card" button (click)="contactWhatsapp()">
+        <ion-card-header><div class="card-icon green"><ion-icon name="logo-whatsapp"></ion-icon></div><ion-card-title>Hablar por WhatsApp</ion-card-title></ion-card-header>
+        <ion-card-content>Contacta directamente al administrador.<ion-icon name="arrow-forward-outline"></ion-icon></ion-card-content>
       </ion-card>
     </section>
     <section class="status-panel">
-      <div>
+      <div class="status-icon"><ion-icon name="time-outline"></ion-icon></div>
+      <div class="status-copy">
         <p class="eyebrow">Tus solicitudes</p>
         <h2>Todo bajo control</h2>
+        <p>Consulta el avance de tus mantenciones cuando quieras.</p>
       </div>
-      <ion-button routerLink="/dashboard" fill="outline">Ver solicitudes</ion-button>
+      <ion-button routerLink="/dashboard" fill="outline">Ver solicitudes<ion-icon slot="end" name="arrow-forward-outline"></ion-icon></ion-button>
     </section>
   </main>
 </ion-content>
